@@ -1,113 +1,117 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Всемирная Корпорация Защиты Бобров</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <style>
-    /* Custom water animation for hero section */
-    .water-wave {
-      position: relative;
-      overflow: hidden;
-    }
-    .water-wave::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 200%;
-      height: 100px;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%23a7f3d0'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%2334d399'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,931.2,90c86.53-10,168.39-78.22,242-84.03,52-4.18,102.47,16.52,147.85,35.58,21.61,7.62,43,16.8,66.35,25.63V0Z' fill='%2310b981'/%3E%3C/svg%3E");
-      background-repeat: repeat-x;
-      animation: wave 15s linear infinite;
-      z-index: 10;
-    }
-    @keyframes wave {
-      0% {
-        transform: translateX(0  );
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Всемирная Корпорация Защиты Бобров</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+        /* Custom water animation for hero section */
+        .water-wave {
+            position: relative;
+            overflow: hidden;
+        }
+        .water-wave::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100px;
+            background: url("data:image/svg+xml,...");
+            background-repeat: repeat-x;
+            animation: wave 15s linear infinite;
+            z-index: 10;
+        }
+        @keyframes wave {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
 
-    /* Beaver animation */
-    .beaver-float {
-      animation: float 6s ease-in-out infinite;
-    }
-    @keyframes float {
-      0% {
-        transform: translateY(0px) rotate(0deg);
-      }
-      50% {
-        transform: translateY(-15px) rotate(2deg);
-      }
-      100% {
-        transform: translateY(0px) rotate(0deg);
-      }
-    }
+        /* Beaver animation */
+        .beaver-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
 
-    /* Custom checkbox */
-    .custom-checkbox {
-      position: absolute;
-      opacity: 0;
-    }
-    .custom-checkbox + label {
-      position: relative;
-      cursor: pointer;
-      padding-left: 2rem;
-    }
-    .custom-checkbox + label:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 1.5rem;
-      height: 1.5rem;
-      border: 2px solid #10b981;
-      border-radius: 4px;
-      background: white;
-    }
-    .custom-checkbox:checked + label:after {
-      content: "✓";
-      position: absolute;
-      left: 0.35rem;
-      top: -0.1rem;
-      font-size: 1.2rem;
-      color: #10b981;
-      font-weight: bold;
-    }
+        /* Custom checkbox */
+        .custom-checkbox {
+            position: absolute;
+            opacity: 0;
+        }
+        .custom-checkbox + label {
+            position: relative;
+            cursor: pointer;
+            padding-left: 2rem;
+        }
+        .custom-checkbox + label:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: 2px solid #10b981;
+            border-radius: 4px;
+            background: white;
+        }
+        .custom-checkbox:checked + label:after {
+            content: "✓";
+            position: absolute;
+            left: 0.35rem;
+            top: -0.1rem;
+            font-size: 1.2rem;
+            color: #10b981;
+            font-weight: bold;
+        }
 
-    /* Commit Buttons Container */
-    #commit-buttons {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      z-index: 1000;
-    }
-    #commit-buttons button {
-      background-color: #3b82f6;
-      color: white;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 0.375rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-    #commit-buttons button:hover {
-      background-color: #2563eb;
-    }
-</style>
+        /* Commit Buttons Container */
+        #commit-buttons {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+        #commit-buttons button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        #commit-buttons button:hover {
+            background-color: #2563eb;
+        }
+    </style>
 </head>
+
 <body class="font-sans text-gray-800 bg-white">
-  <!-- Header/Navigation -->
-  <header id="site-header" class="fixed w-full bg-white shadow-md z-50">
+<!-- Header/Navigation -->
+<header id="site-header" class="fixed w-full bg-white shadow-md z-50">
     <div class="container mx-auto px-4 py-3 flex justify-between items-center">
         <div class="flex items-center space-x-2">
             <i class="fas fa-paw text-2xl text-emerald-500"></i>
@@ -115,31 +119,11 @@
         </div>
 
         <nav class="hidden md:flex space-x-8">
-            <a
-                href="#mission"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Миссия</a
-            >
-            <a
-                href="#projects"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Проекты</a
-            >
-            <a
-                href="#facts"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Факты</a
-            >
-            <a
-                href="#join"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Присоединиться</a
-            >
-            <a
-                href="#contact"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Контакты</a
-            >
+            <a href="#mission" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Миссия</a>
+            <a href="#projects" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Проекты</a>
+            <a href="#facts" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Факты</a>
+            <a href="#join" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Присоединиться</a>
+            <a href="#contact" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Контакты</a>
         </nav>
 
         <div class="md:hidden">
@@ -152,33 +136,51 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
         <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
-            <a
-                href="#mission"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Миссия</a
-            >
-            <a
-                href="#projects"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Проекты</a
-            >
-            <a
-                href="#facts"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Факты</a
-            >
-            <a
-                href="#join"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Присоединиться</a
-            >
-            <a
-                href="#contact"
-                class="text-emerald-700 hover:text-emerald-500 font-medium transition"
-            >Контакты</a
-            >
+            <a href="#mission" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Миссия</a>
+            <a href="#projects" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Проекты</a>
+            <a href="#facts" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Факты</a>
+            <a href="#join" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Присоединиться</a>
+            <a href="#contact" class="text-emerald-700 hover:text-emerald-500 font-medium transition">Контакты</a>
         </div>
     </div>
 </header>
+
+<!-- Hero Section -->
+<section
+    id="hero"
+    class="water-wave pt-24 pb-32 md:pt-32 md:pb-48 bg-gradient-to-b from-emerald-50 to-emerald-100 relative overflow-hidden"
+>
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between relative z-20">
+        <div class="md:w-1/2 mb-12 md:mb-0">
+            <h1 class="text-4xl md:text-6xl font-bold text-emerald-900 mb-6 leading-tight">
+                Защитим бобров вместе!
+            </h1>
+            <p class="text-lg md:text-xl text-gray-700 mb-8">
+                Международная корпорация BeaverGuard объединяет усилия для сохранения и
+                защиты бобров по всему миру.
+            </p>
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <a
+                    href="#join"
+                    class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 text-center"
+                >Присоединиться</a>
+                <a
+                    href="#mission"
+                    class="bg-white hover:bg-gray-100 text-emerald-700 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 text-center"
+                >Узнать больше</a>
+            </div>
+        </div>
+
+        <div class="md:w-1/2 flex justify-center">
+            <div style="width:400px; height: 400px" class="relative h-64 w-64 md:h-96 md:w-96">
+                <img
+                    src="cool.png"
+                    alt="Happy Beaver"
+                    class="w-full h-full object-contain beaver-float"
+                />
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
