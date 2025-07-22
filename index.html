@@ -1,23 +1,1367 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Всемирная Корпорация Защиты Бобров</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+      /* Custom water animation for hero section */
+      .water-wave {
+          position: relative;
+          overflow: hidden;
+      }
+      .water-wave::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 200%;
+          height: 100px;
+          background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' opacity='.25' fill='%23a7f3d0'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' opacity='.5' fill='%2334d399'/%3E%3Cpath d='M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,931.2,90c86.53-10,168.39-78.22,242-84.03,52-4.18,102.47,16.52,147.85,35.58,21.61,7.62,43,16.8,66.35,25.63V0Z' fill='%2310b981'/%3E%3C/svg%3E");
+          background-repeat: repeat-x;
+          animation: wave 15s linear infinite;
+          z-index: 10;
+      }
+      @keyframes wave {
+          0% {
+              transform: translateX(0);
+          }
+          100% {
+              transform: translateX(-50%);
+          }
+      }
+
+      /* Beaver animation */
+      .beaver-float {
+          animation: float 6s ease-in-out infinite;
+      }
+      @keyframes float {
+          0% {
+              transform: translateY(0px) rotate(0deg);
+          }
+          50% {
+              transform: translateY(-15px) rotate(2deg);
+          }
+          100% {
+              transform: translateY(0px) rotate(0deg);
+          }
+      }
+
+      /* Custom checkbox */
+      .custom-checkbox {
+          position: absolute;
+          opacity: 0;
+      }
+      .custom-checkbox + label {
+          position: relative;
+          cursor: pointer;
+          padding-left: 2rem;
+      }
+      .custom-checkbox + label:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 1.5rem;
+          height: 1.5rem;
+          border: 2px solid #10b981;
+          border-radius: 4px;
+          background: white;
+      }
+      .custom-checkbox:checked + label:after {
+          content: "✓";
+          position: absolute;
+          left: 0.35rem;
+          top: -0.1rem;
+          font-size: 1.2rem;
+          color: #10b981;
+          font-weight: bold;
+      }
+
+      /* Commit Buttons Container */
+      #commit-buttons {
+          position: fixed;
+          top: 1rem;
+          right: 1rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          z-index: 1000;
+      }
+      #commit-buttons button {
+          background-color: #3b82f6;
+          color: white;
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 0.375rem;
+          font-weight: 500;
+          cursor: pointer;
+          transition: background-color 0.2s;
+      }
+      #commit-buttons button:hover {
+          background-color: #2563eb;
+      }
+  </style>
 </head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#main">Main</a></li>
-        <li><a href="#about">About us</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contacts">Contacts</a></li>
-      </ul>
+<body class="font-sans text-gray-800 bg-white">
+<!-- Commit Buttons -->
+<div id="commit-buttons">
+  <button id="btn-commit1">Коммит 1</button>
+  <button id="btn-commit2">Коммит 2</button>
+  <button id="btn-commit3">Коммит 3</button>
+</div>
+
+<!-- Header/Navigation -->
+<header id="site-header" class="fixed w-full bg-white shadow-md z-50">
+  <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+    <div class="flex items-center space-x-2">
+      <i class="fas fa-paw text-2xl text-emerald-500"></i>
+      <span class="text-xl font-bold text-emerald-700">BeaverGuard</span>
+    </div>
+
+    <nav class="hidden md:flex space-x-8">
+      <a
+          href="#mission"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Миссия</a
+      >
+      <a
+          href="#projects"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Проекты</a
+      >
+      <a
+          href="#facts"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Факты</a
+      >
+      <a
+          href="#join"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Присоединиться</a
+      >
+      <a
+          href="#contact"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Контакты</a
+      >
     </nav>
-  </header>
-  <main id="main">
-  </main>
+
+    <div class="md:hidden">
+      <button id="mobile-menu-button" class="text-emerald-700 focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex flex-col space-y-4">
+      <a
+          href="#mission"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Миссия</a
+      >
+      <a
+          href="#projects"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Проекты</a
+      >
+      <a
+          href="#facts"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Факты</a
+      >
+      <a
+          href="#join"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Присоединиться</a
+      >
+      <a
+          href="#contact"
+          class="text-emerald-700 hover:text-emerald-500 font-medium transition"
+      >Контакты</a
+      >
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section (Первый блок) -->
+<section
+    id="hero"
+    class="water-wave pt-24 pb-32 md:pt-32 md:pb-48 bg-gradient-to-b from-emerald-50 to-emerald-100 relative overflow-hidden"
+>
+  <div
+      class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between relative z-20"
+  >
+    <div class="md:w-1/2 mb-12 md:mb-0">
+      <h1
+          class="text-4xl md:text-6xl font-bold text-emerald-900 mb-6 leading-tight"
+      >
+        Защитим бобров вместе!
+      </h1>
+      <p class="text-lg md:text-xl text-gray-700 mb-8">
+        Международная корпорация BeaverGuard объединяет усилия для сохранения
+        и защиты бобров по всему миру.
+      </p>
+      <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+        <a
+            href="#join"
+            class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 text-center"
+        >Присоединиться</a
+        >
+        <a
+            href="#mission"
+            class="bg-white hover:bg-gray-100 text-emerald-700 font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 text-center"
+        >Узнать больше</a
+        >
+      </div>
+    </div>
+
+    <div class="md:w-1/2 flex justify-center">
+      <div
+          style="width:400px; height: 400px"
+          class="relative h-64 w-64 md:h-96 md:w-96">
+        <img
+            src="cool.png"
+            alt="Happy Beaver"
+            class="w-full h-full object-contain beaver-float"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Mission Section -->
+<section id="mission" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2
+          class="text-3xl md:text-4xl font-bold text-emerald-800 mb-4"
+      >
+        Наша миссия
+      </h2>
+      <div class="w-20 h-1 bg-emerald-500 mx-auto mb-6"></div>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Мы защищаем бобров и их среду обитания по всему миру, чтобы сохранить
+        этих удивительных инженеров природы для будущих поколений.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div
+          class="bg-emerald-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300"
+      >
+        <div
+            class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
+        >
+          <i class="fas fa-shield-alt text-2xl text-emerald-600"></i>
+        </div>
+        <h3
+            class="text-2xl font-bold text-emerald-800 mb-4 text-center"
+        >
+          Защита
+        </h3>
+        <p class="text-gray-600 text-center">
+          Охрана бобров от браконьерства и незаконного отлова через
+          международные законы и патрулирование.
+        </p>
+      </div>
+
+      <div
+          class="bg-emerald-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300"
+      >
+        <div
+            class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
+        >
+          <i class="fas fa-home text-2xl text-emerald-600"></i>
+        </div>
+        <h3
+            class="text-2xl font-bold text-emerald-800 mb-4 text-center"
+        >
+          Среда обитания
+        </h3>
+        <p class="text-gray-600 text-center">
+          Восстановление и сохранение водно-болотных угодий, рек и озер —
+          естественной среды обитания бобров.
+        </p>
+      </div>
+
+      <div
+          class="bg-emerald-50 rounded-xl p-8 shadow-lg hover:shadow-xl transition duration-300"
+      >
+        <div
+            class="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto"
+        >
+          <i class="fas fa-graduation-cap text-2xl text-emerald-600"></i>
+        </div>
+        <h3
+            class="text-2xl font-bold text-emerald-800 mb-4 text-center"
+        >
+          Образование
+        </h3>
+        <p class="text-gray-600 text-center">
+          Просвещение общественности о важности бобров для экосистемы и
+          их роли в природе.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects Section -->
+<section id="projects" class="py-20 bg-emerald-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2
+          class="text-3xl md:text-4xl font-bold text-emerald-800 mb-4"
+      >
+        Наши проекты
+      </h2>
+      <div class="w-20 h-1 bg-emerald-500 mx-auto mb-6"></div>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Международные инициативы по защите бобров, реализуемые совместно с
+        экологами и местными сообществами.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
+      >
+        <div class="relative h-64 overflow-hidden">
+          <img
+              src="cool.png"
+              alt="Проект защиты бобров"
+              class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+          <div class="absolute bottom-4 left-4">
+              <span
+                  class="bg-emerald-500 text-white text-sm font-bold px-3 py-1 rounded-full"
+              >Европа</span
+              >
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-emerald-800 mb-3">
+            Бобровые заповедники
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Создание сети охраняемых территорий в Европе, где бобры могут
+            жить и размножаться в безопасности.
+          </p>
+          <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-medium"
+              ><i class="fas fa-map-marker-alt mr-2"></i>Франция,
+                Германия, Польша</span
+              >
+            <a
+                href="#"
+                class="text-emerald-600 hover:text-emerald-800 font-medium"
+            >Узнать больше →</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
+      >
+        <div class="relative h-64 overflow-hidden">
+          <img
+              src="cool.png"
+              alt="Образовательный проект"
+              class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+          <div class="absolute bottom-4 left-4">
+              <span
+                  class="bg-emerald-500 text-white text-sm font-bold px-3 py-1 rounded-full"
+              >Северная Америка</span
+              >
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-emerald-800 mb-3">
+            Школа боброводов
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Программы обучения специалистов по мирному сосуществованию людей
+            и бобров, минимизация конфликтов.
+          </p>
+          <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-medium"
+              ><i class="fas fa-map-marker-alt mr-2"></i>Канада, США</span
+              >
+            <a
+                href="#"
+                class="text-emerald-600 hover:text-emerald-800 font-medium"
+            >Узнать больше →</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
+      >
+        <div class="relative h-64 overflow-hidden">
+          <img
+              src="cool.png"
+              alt="Реабилитационный центр"
+              class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+          <div class="absolute bottom-4 left-4">
+              <span
+                  class="bg-emerald-500 text-white text-sm font-bold px-3 py-1 rounded-full"
+              >Мировой проект</span
+              >
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-emerald-800 mb-3">
+            Центры реабилитации
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Лечение и реабилитация больных и травмированных бобров с
+            последующим возвращением в дикую природу.
+          </p>
+          <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-medium"
+              ><i class="fas fa-map-marker-alt mr-2"></i>12 стран
+                мира</span
+              >
+            <a
+                href="#"
+                class="text-emerald-600 hover:text-emerald-800 font-medium"
+            >Узнать больше →</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div
+          class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition duration-300"
+      >
+        <div class="relative h-64 overflow-hidden">
+          <img
+              src="cool.png"
+              alt="Исследовательский проект"
+              class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+          <div class="absolute bottom-4 left-4">
+              <span
+                  class="bg-emerald-500 text-white text-sm font-bold px-3 py-1 rounded-full"
+              >Научная работа</span
+              >
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="text-2xl font-bold text-emerald-800 mb-3">
+            Исследование экосистем
+          </h3>
+          <p class="text-gray-600 mb-4">
+            Научные исследования роли бобров в восстановлении экосистем и
+            смягчении последствий изменения климата.
+          </p>
+          <div class="flex justify-between items-center">
+              <span class="text-emerald-600 font-medium"
+              ><i class="fas fa-map-marker-alt mr-2"></i>Мировое
+                сотрудничество</span
+              >
+            <a
+                href="#"
+                class="text-emerald-600 hover:text-emerald-800 font-medium"
+            >Узнать больше →</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a
+          href="#"
+          class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300"
+      >Все проекты</a
+      >
+    </div>
+  </div>
+</section>
+
+<!-- Facts Section -->
+<section id="facts" class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-emerald-800 mb-4">
+        Факты о бобрах
+      </h2>
+      <div class="w-20 h-1 bg-emerald-500 mx-auto mb-6"></div>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Бобры — удивительные создания, чья деятельность приносит пользу всей
+        экосистеме.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div
+          class="bg-white border border-emerald-100 rounded-xl p-6 shadow-sm hover:shadow-md transition duration-300"
+      >
+        <div class="text-emerald-500 text-3xl mb-4">
+          <i class="fas fa-water"></i>
+        </div>
+        <h3 class="text-xl font-bold text-emerald-800 mb-2">
+          Инженеры природы
+        </h3>
+        <p class="text-gray-600">
+          Бобровые плотины создают водно-болотные угодья — одну из самых
+          продуктивных экосистем на планете.
+        </p>
+      </div>
+
+      <div
+          class="bg-white border border-emerald-100 rounded-xl p-6 shadow-sm hover:shadow-md transition duration-300"
+      >
+        <div class="text-emerald-500 text-3xl mb-4">
+          <i class="fas fa-tree"></i>
+        </div>
+        <h3 class="text-xl font-bold text-emerald-800 mb-2">Лесники</h3>
+        <p class="text-gray-600">
+          Один бобр может свалить до 200 деревьев в год, создавая условия для
+          роста молодняка.
+        </p>
+      </div>
+
+      <div
+          class="bg-white border border-emerald-100 rounded-xl p-6 shadow-sm hover:shadow-md transition duration-300"
+      >
+        <div class="text-emerald-500 text-3xl mb-4">
+          <i class="fas fa-fire-extinguisher"></i>
+        </div>
+        <h3 class="text-xl font-bold text-emerald-800 mb-2">
+          Защитники от пожаров
+        </h3>
+        <p class="text-gray-600">
+          Созданные бобрами водоемы помогают бороться с лесными пожарами,
+          являясь естественными противопожарными барьерами.
+        </p>
+      </div>
+
+      <div
+          class="bg-white border border-emerald-100 rounded-xl p-6 shadow-sm hover:shadow-md transition duration-300"
+      >
+        <div class="text-emerald-500 text-3xl mb-4">
+          <i class="fas fa-frog"></i>
+        </div>
+        <h3 class="text-xl font-bold text-emerald-800 mb-2">Дом для других</h3>
+        <p class="text-gray-600">
+          Бобровые запруды увеличивают биоразнообразие, создавая дом для рыб,
+          птиц, земноводных и насекомых.
+        </p>
+      </div>
+    </div>
+
+    <div
+        class="mt-16 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-xl p-8 md:p-12 text-white shadow-lg"
+    >
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+          <h3 class="text-2xl md:text-3xl font-bold mb-4">
+            Бобры под угрозой
+          </h3>
+          <p class="mb-4">
+            Несмотря на свою важность для экосистем, бобры сталкиваются с
+            многочисленными угрозами — от потери среды обитания до незаконного
+            отлова.
+          </p>
+          <p>
+            За последние 100 лет популяция бобров сократилась на 80% в
+            некоторых регионах мира.
+          </p>
+        </div>
+        <div class="md:w-1/2">
+          <div class="bg-white/20 rounded-xl p-6 border border-white/30">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="text-center">
+                <div class="text-3xl font-bold mb-2">80%</div>
+                <div class="text-sm">Сокращение популяции</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold mb-2">24/7</div>
+                <div class="text-sm">Круглосуточная защита</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold mb-2">50+</div>
+                <div class="text-sm">Спасенных рек</div>
+              </div>
+              <div class="text-center">
+                <div class="text-3xl font-bold mb-2">1000+</div>
+                <div class="text-sm">Защищенных бобров</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Join Section -->
+<section id="join" class="py-20 bg-emerald-50">
+  <div class="container mx-auto px-4">
+    <div
+        class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden"
+    >
+      <div class="md:flex">
+        <div
+            class="md:w-1/2 bg-emerald-600 p-8 md:p-12 flex flex-col justify-center"
+        >
+          <h2 class="text-3xl font-bold text-white mb-6">
+            Присоединяйтесь к нам!
+          </h2>
+          <p class="text-emerald-100 mb-6">
+            Станьте частью глобального движения по защите бобров и их среды
+            обитания.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-emerald-200 mt-1 mr-3"></i>
+              <span class="text-emerald-100">Ежемесячный отчет о вашем вкладе</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-emerald-200 mt-1 mr-3"></i>
+              <span class="text-emerald-100">Эксклюзивные новости и обновления</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-check-circle text-emerald-200 mt-1 mr-3"></i>
+              <span class="text-emerald-100">Возможность участвовать в наших проектах</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="md:w-1/2 p-8 md:p-12">
+          <h3 class="text-2xl font-bold text-emerald-800 mb-6">Форма заявки</h3>
+          <form id="joinForm">
+            <div class="mb-4">
+              <label for="name" class="block text-gray-700 mb-2">Имя</label>
+              <input
+                  type="text"
+                  id="name"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block text-gray-700 mb-2">Email</label>
+              <input
+                  type="email"
+                  id="email"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+                  required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="country" class="block text-gray-700 mb-2">Страна</label>
+              <select
+                  id="country"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              >
+                <option value="">Выберите страну</option>
+                <option value="Russia">Россия</option>
+                <option value="USA">США</option>
+                <option value="Canada">Канада</option>
+                <option value="Germany">Германия</option>
+                <option value="France">Франция</option>
+                <option value="Other">Другая</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label for="message" class="block text-gray-700 mb-2"
+              >Почему вы хотите присоединиться?</label
+              >
+              <textarea
+                  id="message"
+                  rows="3"
+                  class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+              ></textarea>
+            </div>
+            <div class="mb-6">
+              <label class="flex items-start">
+                <input type="checkbox" class="custom-checkbox" required />
+                <label class="text-gray-700"
+                >Я согласен с обработкой персональных данных и хочу получать
+                  новости о деятельности BeaverGuard</label
+                >
+              </label>
+            </div>
+            <button
+                type="submit"
+                class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-lg shadow transition duration-300"
+            >
+              Отправить заявку
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+      <div
+          class="bg-white p-8 rounded-xl shadow-lg text-center"
+      >
+        <div class="text-emerald-600 text-4xl mb-4">
+          <i class="fas fa-hand-holding-heart"></i>
+        </div>
+        <h3 class="text-xl font-bold text-emerald-800 mb-4">
+          Станьте волонтером
+        </h3>
+        <p class="text-gray-600 mb-4">
+          Примите участие в наших проектах по защите и исследованию бобров.
+        </p>
+        <a
+            href="#"
+            class="text-emerald-600 hover:text-emerald-800 font-medium"
+        >Подробнее →</a
+        >
+      </div>
+
+      <div
+          class="bg-white p-8 rounded-xl shadow-lg text-center"
+      >
+        <div class="text-emerald-600 text-4xl mb-4">
+          <i class="fas fa-donate"></i>
+        </div>
+        <h3 class="text-xl font-bold text-emerald-800 mb-4">
+          Поддержать финансово
+        </h3>
+        <p class="text-gray-600 mb-4">
+          Даже небольшое пожертвование поможет нам в работе по защите бобров.
+        </p>
+        <a
+            href="#"
+            class="text-emerald-600 hover:text-emerald-800 font-medium"
+        >Подробнее →</a
+        >
+      </div>
+
+      <div
+          class="bg-white p-8 rounded-xl shadow-lg text-center"
+      >
+        <div class="text-emerald-600 text-4xl mb-4">
+          <i class="fas fa-bullhorn"></i>
+        </div>
+        <h3 class="text-xl font-bold text-emerald-800 mb-4">
+          Распространите информацию
+        </h3>
+        <p class="text-gray-600 mb-4">
+          Расскажите друзьям о важности защиты бобров и их среды обитания.
+        </p>
+        <a
+            href="#"
+            class="text-emerald-600 hover:text-emerald-800 font-medium"
+        >Подробнее →</a
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-emerald-800 mb-4">
+        Нас поддерживают
+      </h2>
+      <div class="w-20 h-1 bg-emerald-500 mx-auto mb-6"></div>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Над сохранением бобров работают ведущие экологи и организации по
+        всему миру.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-emerald-50 rounded-xl p-8 shadow-lg">
+        <div class="mb-4 text-emerald-500">
+          <i class="fas fa-quote-left text-3xl"></i>
+        </div>
+        <p class="text-gray-700 mb-6 italic">
+          "Бобры — ключевой вид для восстановления водных экосистем. Их
+          деятельность создает условия для жизни сотен других видов."
+        </p>
+        <div class="flex items-center">
+          <img
+              src="cool.png"
+              alt="Dr. Jane Smith"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+          />
+          <div>
+            <h4 class="font-bold text-emerald-800">
+              Д-р Елена Петрова
+            </h4>
+            <p class="text-sm text-gray-500">Эколог, МГУ</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-emerald-50 rounded-xl p-8 shadow-lg">
+        <div class="mb-4 text-emerald-500">
+          <i class="fas fa-quote-left text-3xl"></i>
+        </div>
+        <p class="text-gray-700 mb-6 italic">
+          "Работа BeaverGuard по защите бобров в Северной Америке заслуживает
+          самой высокой оценки. Это пример эффективного природоохранного
+          сотрудничества."
+        </p>
+        <div class="flex items-center">
+          <img
+              src="cool.png"
+              alt="John Davis"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+          />
+          <div>
+            <h4 class="font-bold text-emerald-800">Майкл Джонсон</h4>
+            <p class="text-sm text-gray-500">Директор Forest Alliance</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-emerald-50 rounded-xl p-8 shadow-lg">
+        <div class="mb-4 text-emerald-500">
+          <i class="fas fa-quote-left text-3xl"></i>
+        </div>
+        <p class="text-gray-700 mb-6 italic">
+          "Благодаря программе BeaverGuard нам удалось восстановить
+          популяцию бобров в нашем регионе, что положительно сказалось на
+          всей экосистеме."
+        </p>
+        <div class="flex items-center">
+          <img
+              src="cool.png"
+              alt="Anna Kowalska"
+              class="w-12 h-12 rounded-full object-cover mr-4"
+          />
+          <div>
+            <h4 class="font-bold text-emerald-800">Анна Новак</h4>
+            <p class="text-sm text-gray-500">Координатор проекта, Польша</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+        class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 items-center justify-items-center opacity-80"
+    >
+      <img
+          src="cool.png"
+          alt="WWF"
+          class="h-12 object-contain grayscale hover:grayscale-0 transition"
+      />
+      <img
+          src="cool.png"
+          alt="Greenpeace"
+          class="h-12 object-contain grayscale hover:grayscale-0 transition"
+      />
+      <img
+          src="cool.png"
+          alt="IUCN"
+          class="h-12 object-contain grayscale hover:grayscale-0 transition"
+      />
+      <img
+          src="cool.png"
+          alt="UNEP"
+          class="h-12 object-contain grayscale hover:grayscale-0 transition"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-emerald-600 text-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+        Свяжитесь с нами
+      </h2>
+      <div class="w-20 h-1 bg-white mx-auto mb-6"></div>
+      <p class="text-emerald-100 max-w-3xl mx-auto">
+        Мы всегда рады новым партнерам, волонтерам и всем, кто хочет внести
+        вклад в защиту бобров.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div>
+        <h3 class="text-2xl font-bold mb-6">Наши контакты</h3>
+
+        <div class="space-y-6">
+          <div class="flex items-start">
+            <div class="text-xl mr-4 mt-1">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div>
+              <h4 class="font-bold mb-1">Адрес</h4>
+              <p>12345 Beaver Lane, Portland, OR 97201, USA</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="text-xl mr-4 mt-1">
+              <i class="fas fa-phone-alt"></i>
+            </div>
+            <div>
+              <h4 class="font-bold mb-1">Телефон</h4>
+              <p>+1 (503) 555-0199</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="text-xl mr-4 mt-1">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div>
+              <h4 class="font-bold mb-1">Email</h4>
+              <p>info@beaverguard.org</p>
+            </div>
+          </div>
+
+          <div class="flex items-start">
+            <div class="text-xl mr-4 mt-1">
+              <i class="fas fa-globe"></i>
+            </div>
+            <div>
+              <h4 class="font-bold mb-1">Социальные сети</h4>
+              <div class="flex space-x-4 mt-2">
+                <a
+                    href="#"
+                    class="text-white hover:text-emerald-200 text-xl"
+                ><i class="fab fa-facebook"></i
+                ></a>
+                <a
+                    href="#"
+                    class="text-white hover:text-emerald-200 text-xl"
+                ><i class="fab fa-twitter"></i
+                ></a>
+                <a
+                    href="#"
+                    class="text-white hover:text-emerald-200 text-xl"
+                ><i class="fab fa-instagram"></i
+                ></a>
+                <a
+                    href="#"
+                    class="text-white hover:text-emerald-200 text-xl"
+                ><i class="fab fa-youtube"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="text-2xl font-bold mt-12 mb-6">Часы работы</h3>
+        <p class="mb-1">Понедельник - Пятница: 9:00 - 18:00</p>
+        <p>Суббота - Воскресенье: выходной</p>
+      </div>
+
+      <div>
+        <form id="contactForm">
+          <div class="mb-4">
+            <label for="contactName" class="block mb-2">Ваше имя</label>
+            <input
+                type="text"
+                id="contactName"
+                class="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="contactEmail" class="block mb-2">Email</label>
+            <input
+                type="email"
+                id="contactEmail"
+                class="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                required
+            />
+          </div>
+          <div class="mb-4">
+            <label for="contactSubject" class="block mb-2">Тема</label>
+            <input
+                type="text"
+                id="contactSubject"
+                class="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                required
+            />
+          </div>
+          <div class="mb-6">
+            <label for="contactMessage" class="block mb-2">Сообщение</label>
+            <textarea
+                id="contactMessage"
+                rows="4"
+                class="w-full px-4 py-2 bg-white/10 border border-white/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-white focus:border-transparent"
+                required
+            ></textarea>
+          </div>
+          <button
+              type="submit"
+              class="w-full bg-white text-emerald-600 hover:bg-emerald-50 font-bold py-3 px-4 rounded-lg shadow transition duration-300"
+          >
+            Отправить сообщение
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="site-footer" class="bg-emerald-800 text-white py-12">
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <i class="fas fa-paw text-2xl"></i>
+          <span class="text-xl font-bold">BeaverGuard</span>
+        </div>
+        <p class="text-emerald-200">
+          Международная корпорация по защите бобров и их среды обитания с 1995
+          года.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-bold mb-4">Навигация</h4>
+        <ul class="space-y-2">
+          <li>
+            <a
+                href="#mission"
+                class="text-emerald-300 hover:text-white transition"
+            >Миссия</a
+            >
+          </li>
+          <li>
+            <a
+                href="#projects"
+                class="text-emerald-300 hover:text-white transition"
+            >Проекты</a
+            >
+          </li>
+          <li>
+            <a
+                href="#facts"
+                class="text-emerald-300 hover:text-white transition"
+            >Факты</a
+            >
+          </li>
+          <li>
+            <a
+                href="#join"
+                class="text-emerald-300 hover:text-white transition"
+            >Присоединиться</a
+            >
+          </li>
+          <li>
+            <a
+                href="#contact"
+                class="text-emerald-300 hover:text-white transition"
+            >Контакты</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-bold mb-4">Ресурсы</h4>
+        <ul class="space-y-2">
+          <li>
+            <a
+                href="#"
+                class="text-emerald-300 hover:text-white transition"
+            >Блог</a
+            >
+          </li>
+          <li>
+            <a
+                href="#"
+                class="text-emerald-300 hover:text-white transition"
+            >Отчеты</a
+            >
+          </li>
+          <li>
+            <a
+                href="#"
+                class="text-emerald-300 hover:text-white transition"
+            >Исследования</a
+            >
+          </li>
+          <li>
+            <a
+                href="#"
+                class="text-emerald-300 hover:text-white transition"
+            >Фотоархив</a
+            >
+          </li>
+          <li>
+            <a
+                href="#"
+                class="text-emerald-300 hover:text-white transition"
+            >FAQ</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-lg font-bold mb-4">Подписаться на новости</h4>
+        <form class="flex mb-4">
+          <input
+              type="email"
+              placeholder="Ваш email"
+              class="px-4 py-2 w-full rounded-l-lg focus:outline-none text-gray-800"
+          />
+          <button
+              type="submit"
+              class="bg-emerald-500 hover:bg-emerald-600 px-4 py-2 rounded-r-lg transition"
+          >
+            <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
+        <p class="text-sm text-emerald-300">
+          Будьте в курсе наших проектов и акций.
+        </p>
+      </div>
+    </div>
+
+    <div
+        class="border-t border-emerald-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center"
+    >
+      <p class="text-emerald-300 text-sm mb-4 md:mb-0">
+        © 2023 BeaverGuard International. Все права защищены.
+      </p>
+      <div class="flex space-x-6">
+        <a href="#" class="text-emerald-300 hover:text-white transition"
+        ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="#" class="text-emerald-300 hover:text-white transition"
+        ><i class="fab fa-twitter"></i
+        ></a>
+        <a href="#" class="text-emerald-300 hover:text-white transition"
+        ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="#" class="text-emerald-300 hover:text-white transition"
+        ><i class="fab fa-linkedin-in"></i
+        ></a>
+        <a href="#" class="text-emerald-300 hover:text-white transition"
+        ><i class="fab fa-youtube"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button
+    id="backToTop"
+    class="fixed bottom-8 right-8 bg-emerald-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-opacity duration-300"
+>
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Success Modal -->
+<div
+    id="successModal"
+    class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 opacity-0 invisible transition-opacity duration-300"
+>
+  <div class="bg-white rounded-xl p-8 max-w-md mx-4 shadow-xl relative">
+    <button
+        id="closeModal"
+        class="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+    >
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="text-center">
+      <div
+          class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6"
+      >
+        <i class="fas fa-check text-3xl text-emerald-600"></i>
+      </div>
+      <h3 class="text-2xl font-bold text-emerald-800 mb-4">Спасибо!</h3>
+      <p class="text-gray-600 mb-6">
+        Ваше сообщение успешно отправлено. Наша команда свяжется с вами в
+        ближайшее время.
+      </p>
+      <button
+          id="modalCloseButton"
+          class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300"
+      >
+        Закрыть
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Function to switch between commits
+  function showCommit(commitNumber) {
+    const header = document.getElementById("site-header");
+    const footer = document.getElementById("site-footer");
+    const hero = document.getElementById("hero");
+    const sections = [
+      "mission",
+      "projects",
+      "facts",
+      "join",
+    ];
+    const successModal = document.getElementById("successModal");
+
+    if (commitNumber === 1) {
+      // Commit 1: только первый блок
+      header.style.display = "none";
+      footer.style.display = "none";
+      hero.style.display = "block";
+      contact.style.display = "none"
+      sections.forEach((id) => {
+        document.getElementById(id).style.display = "none";
+      });
+      // Скрываем модалку на всякий случай
+      successModal.style.display = "none";
+    } else if (commitNumber === 2) {
+      // Commit 2: почти весь сайт (все секции, но модалка отключена)
+      header.style.display = "block";
+      footer.style.display = "none";
+      hero.style.display = "block";
+      contact.style.display = "none"
+      sections.forEach((id) => {
+        document.getElementById(id).style.display = "block";
+      });
+      // Отключаем модалку, чтобы при сабмите она не показывалась
+      successModal.style.display = "none";
+    } else if (commitNumber === 3) {
+      // Commit 3: весь сайт и модалка работает
+      header.style.display = "block";
+      footer.style.display = "block";
+      hero.style.display = "block";
+      contact.style.display = "block";
+      sections.forEach((id) => {
+        document.getElementById(id).style.display = "block";
+      });
+      // Возвращаем стандартное управление модалкой
+      successModal.style.display = "";
+    }
+  }
+
+  // Сразу показываем Commit 1 после загрузки
+  document.addEventListener("DOMContentLoaded", () => {
+    showCommit(1);
+
+    // Назначаем кнопкам обработчики
+    document
+      .getElementById("btn-commit1")
+      .addEventListener("click", () => showCommit(1));
+    document
+      .getElementById("btn-commit2")
+      .addEventListener("click", () => showCommit(2));
+    document
+      .getElementById("btn-commit3")
+      .addEventListener("click", () => showCommit(3));
+
+    // Mobile Menu Toggle
+    const mobileMenuButton = document.getElementById(
+      "mobile-menu-button"
+    );
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    mobileMenuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // Close mobile menu when clicking on a link
+    const mobileLinks = mobileMenu.querySelectorAll("a");
+    mobileLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+      });
+    });
+
+    // Back to Top Button
+    const backToTopButton = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+      if (window.pageYOffset > 300) {
+        backToTopButton.classList.remove("opacity-0", "invisible");
+        backToTopButton.classList.add("opacity-100", "visible");
+      } else {
+        backToTopButton.classList.remove("opacity-100", "visible");
+        backToTopButton.classList.add("opacity-0", "invisible");
+      }
+    });
+
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Form Submission and Modal Logic
+    const joinForm = document.getElementById("joinForm");
+    const contactForm = document.getElementById("contactForm");
+    const successModal = document.getElementById("successModal");
+    const closeModal = document.getElementById("closeModal");
+    const modalCloseButton = document.getElementById(
+      "modalCloseButton"
+    );
+
+    function showModal() {
+      successModal.classList.remove("opacity-0", "invisible");
+      successModal.classList.add("opacity-100", "visible");
+    }
+
+    function hideModal() {
+      successModal.classList.remove("opacity-100", "visible");
+      successModal.classList.add("opacity-0", "invisible");
+    }
+
+    if (joinForm) {
+      joinForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        showModal();
+        joinForm.reset();
+      });
+    }
+
+    if (contactForm) {
+      contactForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        showModal();
+        contactForm.reset();
+      });
+    }
+
+    closeModal.addEventListener("click", hideModal);
+    modalCloseButton.addEventListener("click", hideModal);
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute("href");
+        if (targetId === "#") return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: "smooth",
+          });
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
